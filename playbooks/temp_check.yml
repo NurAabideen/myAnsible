@@ -1,0 +1,17 @@
+---
+- name: Run Temp Check Script
+  hosts: all
+  gather_facts: false
+#  become: true
+
+  vars:
+    ansible_user: nur
+
+  tasks:
+    - name: Run Temp Check Script
+      shell: vcgencmd measure_temp
+      register: script_output
+
+    - name: Display Script Output
+      debug:
+        var: script_output.stdout_lines
